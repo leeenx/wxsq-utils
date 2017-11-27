@@ -57,3 +57,14 @@ audioProto.pause = function() {
     } 
 }
 
+// 微信环境
+if(/micromessenger/i.test(navigator.userAgent) === true) { 
+	document.addEventListener("WeixinJSBridgeReady", function () { 
+		// todo
+	});
+}
+// 非微信环境
+else {
+	// todo
+}
+
