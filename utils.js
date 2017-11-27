@@ -20,10 +20,10 @@ audioProto._play = audioProto.play;
 audioProto._load = audioProto.load; 
 audioProto.play = function() { 
     // 保证状态为4
-    if(this.readyState !== 4) {
+    if(this.readyState === 0) {
     	var that = this; 
     	var siv = setInterval(function() {
-    		if(that.readyState === 4) { 
+    		if(that.readyState > 0) { 
     			clearInterval(siv); 
     			that._play(); 
     		}
@@ -43,10 +43,10 @@ audioProto.load = function() {
 audioProto._pause = audioProto.pause; 
 audioProto.pause = function() { 
     // 保证状态为4
-	if(this.readyState !== 4) {
+	if(this.readyState === 0) {
     	var that = this; 
     	var siv = setInterval(function() {
-    		if(that.readyState === 4) { 
+    		if(that.readyState > 0) { 
     			clearInterval(siv); 
     			that._pause(); 
     		}
