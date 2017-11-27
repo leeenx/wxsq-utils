@@ -19,8 +19,8 @@ var audioProto = HTMLAudioElement.prototype;
 audioProto._play = audioProto.play; 
 audioProto._load = audioProto.load; 
 audioProto.play = function() { 
-    // 保证状态为4
-    if(this.readyState === 0) {
+    // 保证状态不为 0
+    if(this.readyState === 0 && this._triggered === true) {
     	var that = this; 
     	var siv = setInterval(function() {
     		if(that.readyState > 0) { 
@@ -37,6 +37,8 @@ audioProto.load = function() {
     // 如果状态为 0 执行下载
     if(this.readyState === 0) {
         this._load(); 
+        // 标记已经触发下载事件
+        this._triggered = true; 
     }
 }
 
