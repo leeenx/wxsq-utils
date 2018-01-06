@@ -25,7 +25,7 @@ var XAudio = function() {
             if("muted" === i || "paused" === i) return; 
             // 对象类型属性，直接挂载到 this
             if(typeof(audio[i]) === "object") {
-                this[i] = audio[i]; 
+                that[i] = audio[i]; 
             }
             // 函数类型属性，间接挂载
             else if(typeof(audio[i]) === "function") { 
