@@ -81,8 +81,8 @@ var XAudio = function() {
         }
         // 正常播放
         else {
-            // 如果是静音恢复自动更新 currentTime， 如果非静音 audio 直接播放
-            that.muted === true ? this.updateCurrentTime() : audio.play(); 
+            // 如果是静音恢复自动更新 currentTime， 如果非静音 audio 直接播放 
+            that.isMuted === true ? this.updateCurrentTime() : audio.play(); 
             that.paused = false; 
         }
     }
@@ -100,7 +100,7 @@ var XAudio = function() {
         }
         else { 
             // 如果是静音取消自动更新 currentTime；如果非静音 audio 直接暂停
-            that.muted === true ? this.stopUpdateCurrentTime() : audio.pause(); 
+            that.isMuted === true ? this.stopUpdateCurrentTime() : audio.pause(); 
             that.paused = true; 
         } 
     }
@@ -119,7 +119,7 @@ var XAudio = function() {
                 this.paused !== true && audio.pause() & this.updateCurrentTime(); 
             }
             // 取消静音
-            else {
+            else { 
                 // 如果系统不处于暂停状态下，播放 audio 同时取消更新 currentTime
                 this.paused !== true && audio.play() & this.stopUpdateCurrentTime(); 
             }
@@ -132,7 +132,7 @@ var XAudio = function() {
     // 更新当前时间
     this.updateCurrentTime = function() { 
         if(typeof(requestAnimationFrame) !== "undefined") { 
-            that.RAF = that.autoUpdateCurrentTime(0); 
+            that.autoUpdateCurrentTime(0); 
         }
     }
 
@@ -151,9 +151,9 @@ var XAudio = function() {
     }
 
     // 停止更新当前时间
-    this.stopUpdateCurrentTime = function() {
-        if(typeof(cancelAnimationFrame) !== "undefined") {
-            cancelAnimationFrame(this.RAF); 
+    this.stopUpdateCurrentTime = function() { 
+        if(typeof(cancelAnimationFrame) !== "undefined") { 
+            cancelAnimationFrame(that.RAF); 
         }
     }
 
