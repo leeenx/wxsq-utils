@@ -50,9 +50,9 @@ var XAudio = function() {
     }
 
     // 重写方法 load
-    this.load = function() {
+    this.load = function() { 
         // 如果状态为 0 执行下载
-        if(audio.readyState === 0 && this.loadStart !== true) {
+        if(audio.readyState <= 1 && this.loadStart !== true) {  
             audio.load(); 
             // 标记已经触发下载事件
             this.loadStart = true; 
